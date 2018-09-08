@@ -12,13 +12,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MineSweeper.FormControls;
-using MineSweeper.Forms;
-using MineSweeper.ExecutionLogic;
 
-namespace MineSweeper.ObjectModels
+using System.Windows.Forms;
+using MineSweeper.Models;
+using MineSweeper.Views.Forms;
+
+namespace MineSweeper.Controllers
 {
     class ClickableCellGameBoard
     {

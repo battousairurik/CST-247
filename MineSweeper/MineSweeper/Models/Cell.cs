@@ -7,7 +7,7 @@
 
 using System;
 
-namespace MineSweeper.ObjectModels
+namespace MineSweeper.Models
 {
     class Cell
     {

@@ -11,9 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MineSweeper.ObjectModels;
 
-namespace MineSweeper.FormControls
+namespace MineSweeper.Models
 {
     class ClickableCell : Button
     {

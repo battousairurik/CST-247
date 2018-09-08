@@ -62,70 +62,68 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExecutionLogic\HighScoresFileStorage.cs" />
-    <Compile Include="ExecutionLogic\IPlayable.cs" />
-    <Compile Include="ExecutionLogic\MineSweeperGame.cs" />
-    <Compile Include="ExecutionLogic\PlayerStatsController.cs" />
-    <Compile Include="FormControls\ClickableCell.cs">
+    <Compile Include="Controllers\ClickableCellGameBoard.cs" />
+    <Compile Include="Controllers\HighScoresFileStorage.cs" />
+    <Compile Include="Models\MineSweeperGameBoard.cs" />
+    <Compile Include="Controllers\PlayerStatsController.cs" />
+    <Compile Include="GenericsInterfaces\IPlayable.cs" />
+    <Compile Include="Models\AGameBoard.cs" />
+    <Compile Include="Models\Cell.cs" />
+    <Compile Include="Models\ClickableCell.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\BoardDisplayForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BoardDisplayForm.Designer.cs">
-      <DependentUpon>BoardDisplayForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DifficultySelectionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DifficultySelectionForm.Designer.cs">
-      <DependentUpon>DifficultySelectionForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\InputBoxForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\InputBoxForm.Designer.cs">
-      <DependentUpon>InputBoxForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\PlayerStatsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\PlayerStatsForm.Designer.cs">
-      <DependentUpon>PlayerStatsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ObjectModels\AGameBoard.cs" />
+    <Compile Include="Models\PlayerStats.cs" />
     <Compile Include="Driver.cs" />
-    <Compile Include="ObjectModels\Cell.cs" />
-    <Compile Include="ObjectModels\ClickableCellGameBoard.cs" />
-    <Compile Include="ObjectModels\MineSweeperGameBoard.cs" />
-    <Compile Include="ObjectModels\PlayerStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserInterfaces\MineSweeperConsole.cs" />
+    <Compile Include="Views\Forms\BoardDisplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\BoardDisplayForm.Designer.cs">
+      <DependentUpon>BoardDisplayForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\DifficultySelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\DifficultySelectionForm.Designer.cs">
+      <DependentUpon>DifficultySelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\InputBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\InputBoxForm.Designer.cs">
+      <DependentUpon>InputBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\PlayerStatsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\PlayerStatsForm.Designer.cs">
+      <DependentUpon>PlayerStatsForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\BoardDisplayForm.resx">
-      <DependentUpon>BoardDisplayForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DifficultySelectionForm.resx">
-      <DependentUpon>DifficultySelectionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InputBoxForm.resx">
-      <DependentUpon>InputBoxForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PlayerStatsForm.resx">
-      <DependentUpon>PlayerStatsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\BoardDisplayForm.resx">
+      <DependentUpon>BoardDisplayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\DifficultySelectionForm.resx">
+      <DependentUpon>DifficultySelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\InputBoxForm.resx">
+      <DependentUpon>InputBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\PlayerStatsForm.resx">
+      <DependentUpon>PlayerStatsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

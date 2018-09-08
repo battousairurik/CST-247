@@ -10,10 +10,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MineSweeper.ObjectModels;
+using MineSweeper.Models;
 
 
-namespace MineSweeper.ExecutionLogic
+namespace MineSweeper.Controllers
 {
     class HighScoresFileStorage
     {

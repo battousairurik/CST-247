@@ -1,4 +1,4 @@
-﻿namespace MineSweeper.Forms
+﻿namespace MineSweeper.Views.Forms
 {
     partial class BoardDisplayForm
     {

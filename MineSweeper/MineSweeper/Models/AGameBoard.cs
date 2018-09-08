@@ -4,7 +4,7 @@
 
 // Description: This is an abstract game board that can be used to extend to various custom game boards.
 
-namespace MineSweeper.ObjectModels
+namespace MineSweeper.Models
 {
     public abstract class AGameBoard
     {

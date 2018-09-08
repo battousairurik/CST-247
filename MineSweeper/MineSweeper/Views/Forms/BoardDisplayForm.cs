@@ -14,10 +14,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MineSweeper.FormControls;
-using MineSweeper.ObjectModels;
+using MineSweeper.Models;
+using MineSweeper.Controllers;
 
-namespace MineSweeper.Forms
+namespace MineSweeper.Views.Forms
 {
     public partial class BoardDisplayForm : Form
     {

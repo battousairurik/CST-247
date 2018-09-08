@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MineSweeper.Forms
+namespace MineSweeper.Views.Forms
 {
     public partial class DifficultySelectionForm : Form
     {

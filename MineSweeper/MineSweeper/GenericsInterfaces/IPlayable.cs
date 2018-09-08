@@ -4,7 +4,7 @@
 
 // Description: Interface denoting that a class has the Playable quality.
 
-namespace MineSweeper.ExecutionLogic
+namespace MineSweeper.GenericsInterfaces
 {
     interface IPlayable
     {

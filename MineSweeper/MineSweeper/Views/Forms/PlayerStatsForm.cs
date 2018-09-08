@@ -13,10 +13,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MineSweeper.ExecutionLogic;
-using MineSweeper.ObjectModels;
+using MineSweeper.Models;
 
-namespace MineSweeper.Forms
+namespace MineSweeper.Views.Forms
 {
     public partial class PlayerStatsForm : Form
     {
