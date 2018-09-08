@@ -6,6 +6,7 @@
 //      as the boards base, cells generated with a random chance of being live mines. 
 
 using System;
+using MineSweeper.GenericsInterfaces;
 
 namespace MineSweeper.Models
 {
