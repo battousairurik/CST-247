@@ -20,13 +20,25 @@ public partial class Register : System.Web.UI.Page
 		SqlConnection con = new SqlConnection(strcon);
 		SqlCommand com = new SqlCommand("CUser", con);
 		com.CommandType = System.Data.CommandType.StoredProcedure;
-		SqlParameter p1 = new SqlParameter("username", TextBoxusername.Text);
-		SqlParameter p2 = new SqlParameter("password", TextBoxpassword.Text);
-		SqlParameter p3 = new SqlParameter("email", TextBoxemail.Text);
+        SqlParameter p1 = new SqlParameter("firstname", TextBoxfirstname.Text);
+        SqlParameter p2 = new SqlParameter("lastname", TextBoxlastname.Text);
+        SqlParameter p3 = new SqlParameter("gender", TextBoxgender.Text);
+        SqlParameter p4 = new SqlParameter("age", TextBoxage.Text);
+        SqlParameter p5 = new SqlParameter("state", TextBoxstate.Text);
+        SqlParameter p6 = new SqlParameter("email", TextBoxemail.Text);
+        SqlParameter p7 = new SqlParameter("username", TextBoxusername.Text);
+		SqlParameter p8 = new SqlParameter("password", TextBoxpassword.Text);
+
+        com.Parameters.Add(p7);
 		com.Parameters.Add(p1);
 		com.Parameters.Add(p2);
 		com.Parameters.Add(p3);
-		con.Open();
+        com.Parameters.Add(p4);
+        com.Parameters.Add(p5);
+        com.Parameters.Add(p6);
+        com.Parameters.Add(p8);
+
+        con.Open();
 		SqlDataReader rd = com.ExecuteReader();
 		if (rd.HasRows)
 		{

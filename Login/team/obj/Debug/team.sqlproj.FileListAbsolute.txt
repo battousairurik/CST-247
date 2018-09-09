@@ -1,0 +1,5 @@
+C:\Users\Michael\Documents\CST-247\Login\team\bin\Debug\team.dacpac
+C:\Users\Michael\Documents\CST-247\Login\team\bin\Debug\team.dll
+C:\Users\Michael\Documents\CST-247\Login\team\bin\Debug\team.pdb
+C:\Users\Michael\Documents\CST-247\Login\team\obj\Debug\team.dll
+C:\Users\Michael\Documents\CST-247\Login\team\obj\Debug\team.pdb
