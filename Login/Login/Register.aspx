@@ -17,35 +17,38 @@
         <div>
         </div>
         <p>
-            First Name&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="FirstNameLabel" runat="server" Text="First Name" Width="100px"></asp:Label>
             <asp:TextBox ID="TextBoxfirstname" runat="server" style="margin-right: 10px" Width="160px" AutoPostBack="True"></asp:TextBox>
         </p>
         <p>
-            Last Name&nbsp;&nbsp;&nbsp; 
+            <asp:Label ID="LastNameLabel" runat="server" Text="Last Name" Width="100px"></asp:Label>
             <asp:TextBox ID="TextBoxlastname" runat="server" style="margin-right: 10px" Width="160px" AutoPostBack="True"></asp:TextBox>
         </p>
         <p>
-            Gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <asp:TextBox ID="TextBoxgender" runat="server" style="margin-right: 10px" Width="160px" AutoPostBack="True"></asp:TextBox>
+            <asp:Label ID="GenderLabel" runat="server" Text="Gender" Width="100px"></asp:Label> 
+            <asp:RadioButton ID="RadioButton1" runat="server" text="Male" Width="100px"/>
+            <asp:RadioButton ID="RadioButton2" runat="server" text="Female" Width="100px"/>
         </p>
         <p>
-            Age&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <asp:TextBox ID="TextBoxage" runat="server" style="margin-right: 10px" Width="160px" AutoPostBack="True"></asp:TextBox>
+            <asp:Label ID="AgeLabel" runat="server" Text="Age" Width="100px"></asp:Label>
+            <asp:TextBox ID="TextBoxAge" runat="server" style="margin-right: 10px" Width="160px" AutoPostBack="True"></asp:TextBox>
+
         </p>
         <p>
-            State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <asp:TextBox ID="TextBoxstate" runat="server" style="margin-right: 10px" Width="160px" AutoPostBack="True"></asp:TextBox>
+            <asp:Label ID="StateLabel" runat="server" Text="State" Width="100px"></asp:Label> 
+            <asp:DropDownList ID="DropDownList1" runat="server">
+            </asp:DropDownList>
         </p>
         <p>
-            E-Mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <asp:Label ID="EmailLabel" runat="server" Text="Email Address" Width="100px"></asp:Label> 
             <asp:TextBox ID="TextBoxemail" runat="server" style="margin-right: 10px" Width="160px" AutoPostBack="True"></asp:TextBox>
         </p>
         <p>
-            User Name 
+            <asp:Label ID="UsernameLabel" runat="server" Text="Username" Width="100px"></asp:Label> 
             <asp:TextBox ID="TextBoxusername" runat="server" style="margin-right: 10px" Width="160px" AutoPostBack="True"></asp:TextBox>
         </p>
         <p>
-            Password&nbsp;&nbsp;  
+            <asp:Label ID="PasswordLabel" runat="server" Text="Password" Width="100px"></asp:Label>  
             <asp:TextBox ID="TextBoxpassword" runat="server" style="margin-right: 10px" Width="160px" AutoPostBack="True"></asp:TextBox>
         </p>
         <p style="margin-left: 80px">
