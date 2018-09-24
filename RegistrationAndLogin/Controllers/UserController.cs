@@ -11,8 +11,7 @@ using RegistrationAndLogin.Models;
 namespace RegistrationAndLogin.Controllers
 {
     public class UserController : Controller
-    {
-       
+    {  
 		[HttpGet]
 		public ActionResult Registration()
 		{
@@ -28,7 +27,6 @@ namespace RegistrationAndLogin.Controllers
 			// Model Validation 
 			if (ModelState.IsValid)
 			{
-
 				#region //Email is already Exist 
 				var isExist = IsEmailExist(user.EmailID);
 				if (isExist)
@@ -37,17 +35,14 @@ namespace RegistrationAndLogin.Controllers
 					return View(user);
 				}
 				#endregion
-
 				#region Generate Activation Code 
 				user.ActivationCode = Guid.NewGuid();
 				#endregion
-
 				#region  Password Hashing 
 				user.Password = Crypto.Hash(user.Password);
 				user.ConfirmPassword = Crypto.Hash(user.ConfirmPassword); //
 				#endregion
 				user.IsEmailVerified = false;
-
 				#region Save to Database
 				using (MyDatabaseEntities dc = new MyDatabaseEntities())
 				{
