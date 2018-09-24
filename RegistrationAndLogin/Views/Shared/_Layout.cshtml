@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div id="header">
+        <h2><a href="/">ASP.NET MVC MINESWEEPER GAME APPLICATION </a></h2>
+        <ul id="navlist">
+            <li class="first"><a href="@Url.Content("~/Home/Index")" id="current">Home</a></li>
+            <li><a href="@Url.Content("~/Game/DifficultySelection")">Play Game</a></li>
+            <li><a href="@Url.Content("~/User/Registration")">Register</a></li>
+            <li><a href="@Url.Content("~/User/Login")">Login</a></li>
+        </ul>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Yellow Group CST-247 Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("Scripts", false)
+</body>
+</html>
