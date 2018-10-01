@@ -10,8 +10,8 @@ using System.Web.Security;
 using RegistrationAndLogin.Models;
 namespace RegistrationAndLogin.Controllers
 {
-    public class UserController : Controller
-    {  
+	public class UserController : Controller
+	{
 		[HttpGet]
 		public ActionResult Registration()
 		{
@@ -27,6 +27,7 @@ namespace RegistrationAndLogin.Controllers
 			// Model Validation 
 			if (ModelState.IsValid)
 			{
+
 				#region //Email is already Exist 
 				var isExist = IsEmailExist(user.EmailID);
 				if (isExist)
@@ -35,14 +36,17 @@ namespace RegistrationAndLogin.Controllers
 					return View(user);
 				}
 				#endregion
+
 				#region Generate Activation Code 
 				user.ActivationCode = Guid.NewGuid();
 				#endregion
+
 				#region  Password Hashing 
 				user.Password = Crypto.Hash(user.Password);
 				user.ConfirmPassword = Crypto.Hash(user.ConfirmPassword); //
 				#endregion
 				user.IsEmailVerified = false;
+
 				#region Save to Database
 				using (MyDatabaseEntities dc = new MyDatabaseEntities())
 				{
@@ -73,7 +77,8 @@ namespace RegistrationAndLogin.Controllers
 			bool Status = false;
 			using (MyDatabaseEntities dc = new MyDatabaseEntities())
 			{
-				dc.Configuration.ValidateOnSaveEnabled = false; 
+				dc.Configuration.ValidateOnSaveEnabled = false; // This line I have added here to avoid 
+																// Confirm password does not match issue on save changes
 				var v = dc.Users.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
 				if (v != null)
 				{
@@ -87,17 +92,17 @@ namespace RegistrationAndLogin.Controllers
 				}
 			}
 			ViewBag.Status = Status;
-			return RedirectToAction("Login");
+			return View();
 		}
-		//Login Get Action
+		//login
 		[HttpGet]
 		public ActionResult Login()
 		{
 			return View();
 		}
-		//Login Post Action
+		//login post
 		[HttpPost]
-        [ValidateAntiForgeryToken]
+		[ValidateAntiForgeryToken]
 		public ActionResult Login(UserLogin login, string ReturnUrl = "")
 		{
 			string message = "";
@@ -133,21 +138,21 @@ namespace RegistrationAndLogin.Controllers
 					}
 					else
 					{
-						message = "Invalid User Credentials Provided";
+						message = "Invalid credential provided";
 					}
 				}
 				else
 				{
-					message = "Invalid User Credentials Provided";
+					message = "Invalid credential provided";
 				}
 			}
 			ViewBag.Message = message;
 			return View();
 		}
-		//Logout function
+		//logout
 		[Authorize]
-		[HttpPost]
-		public ActionResult Logout()
+		
+		public ActionResult LogOut()
 		{
 			FormsAuthentication.SignOut();
 			return RedirectToAction("Login", "User");
@@ -195,10 +200,10 @@ namespace RegistrationAndLogin.Controllers
 				smtp.Send(message);
 		}
 
-        public ActionResult PlayGame()
-        {
-            return RedirectToAction("DifficultySelection", "Game");
-        }
+		public ActionResult PlayGame()
+		{
+			return RedirectToAction("DifficultySelection", "Game");
+		}
 
 	}
 }

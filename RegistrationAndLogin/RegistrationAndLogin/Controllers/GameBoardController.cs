@@ -28,7 +28,8 @@ namespace RegistrationAndLogin.Controllers
                     {
                         Row = i,
                         Column = j,
-                        IsLive = DetermineIsLive()
+                        IsLive = DetermineIsLive(),
+                        Display = " "
                     };
                     if (gameCell.IsLive)
                         LiveNodes++;

@@ -1,0 +1,112 @@
+﻿@model RegistrationAndLogin.Models.GameBoard
+
+@{
+    ViewBag.Title = "GameDisplay";
+}
+
+<h2>Game Board Display</h2>
+
+<div class="container" style="margin-top: 2%;">
+
+    @for (var Row = 0; Row < Model.BoardSize; Row++)
+    {
+        <div class="hidden-xs col-lg-3"></div>
+        <div class="row">
+            <div class="col-xs-12">
+                @for (var Col = 0; Col < Model.BoardSize; Col++)
+                {
+                    var Cell = Model.GameCells[Row, Col];
+                    var Value = " ";
+
+                    if (Cell.Flagged && !Cell.IsVisited)
+                    {
+                        Value = "F";
+                    }
+                    else if (Cell.IsLive && Cell.IsVisited)
+                    {
+                        Value = "*";
+                    }
+                    else if (Cell.IsVisited)
+                    {
+                        Value = Cell.Neighbors.ToString();
+                    }
+
+
+
+                    @Ajax.ActionLink(@Value,
+                                       "GameDisplay",
+                                       "Game",
+                                       new { Row = Cell.Row, Col = Cell.Column, Secs = 0 },
+                                       new AjaxOptions
+                                       {
+                                           UpdateTargetId = "GameDisplay",
+                                           InsertionMode = InsertionMode.Replace,
+                                           HttpMethod = "GET"
+                                       },
+                                       new
+                                       {
+                                           id = $"{Cell.Row},{Cell.Column}",
+                                           oncontextmenu = $"flag({Cell.Row},{Cell.Column},'{Cell.IsVisited}');",
+                                           onclick = $"tileClick({Cell.Row},{Cell.Column});",
+                                           style = "width: 75px; height: 75px; float: left;",
+                                           @class = "btn btn-default"
+                                       })
+                }
+
+            </div>
+        </div>
+    }
+    
+</div>
+
+<script>
+    // toggles flag
+    function flag(row, col, beenVisited) {
+
+        var curBtn = $('#' + row.toString() + "\\," + col.toString());
+
+        // will toggle flag if tile hasnt been visited
+        if (curBtn.text() === '\xa0' || curBtn.text() === "F") {
+            $.post("/Game/Row/Col", { Row: row, Col: col });
+
+            if (curBtn.text() === 'F') {
+                curBtn.text(" ");
+
+            } else {
+
+                curBtn.text("F");
+
+                curBtn.click((e) => {
+                    e.preventDefault();
+                    return false;
+                });
+            }
+        }
+
+        return false;
+
+    }
+
+    function tileClick(row, col) {
+
+        var curBtn = $('#' + row + "\\," + col);
+
+        // stops user from clicking revealed tile
+        if (curBtn.text() === '\xa0') {
+            var _href = curBtn.attr('href');
+            var _secRemovedHref = _href.substr(0, _href.length - 1);
+            curBtn.attr("href", _secRemovedHref + sec);
+
+        } else {
+            // disables clicking
+            return false;
+        }
+
+    }
+
+</script>
+<div>
+    <ul>
+        <li>@Html.ActionLink("Save Game State", "SaveGameState","Game")</li>
+    </ul>
+</div>
