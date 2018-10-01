@@ -1,8 +1,6 @@
 ﻿@model RegistrationAndLogin.Models.GameBoard
 
-@{
-    ViewBag.Title = "GameDisplay";
-}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
 <h2>Game Board Display</h2>
 
@@ -31,79 +29,36 @@
                         Value = Cell.Neighbors.ToString();
                     }
 
+                    <input type="button"
+                           runat="server"
+                           value="@Value"
+                           OnClientClick="LeftClick(@Cell);"
+                           oncontextmenu="RightClick(@Cell);"
+                           width="25"
+                           height="25" />
 
 
-                    @Ajax.ActionLink(@Value,
-                                       "GameDisplay",
-                                       "Game",
-                                       new { Row = Cell.Row, Col = Cell.Column, Secs = 0 },
-                                       new AjaxOptions
-                                       {
-                                           UpdateTargetId = "GameDisplay",
-                                           InsertionMode = InsertionMode.Replace,
-                                           HttpMethod = "GET"
-                                       },
-                                       new
-                                       {
-                                           id = $"{Cell.Row},{Cell.Column}",
-                                           oncontextmenu = $"flag({Cell.Row},{Cell.Column},'{Cell.IsVisited}');",
-                                           onclick = $"tileClick({Cell.Row},{Cell.Column});",
-                                           style = "width: 75px; height: 75px; float: left;",
-                                           @class = "btn btn-default"
-                                       })
                 }
 
             </div>
         </div>
     }
-    
+
 </div>
 
-<script>
-    // toggles flag
-    function flag(row, col, beenVisited) {
-
-        var curBtn = $('#' + row.toString() + "\\," + col.toString());
-
-        // will toggle flag if tile hasnt been visited
-        if (curBtn.text() === '\xa0' || curBtn.text() === "F") {
-            $.post("/Game/Row/Col", { Row: row, Col: col });
-
-            if (curBtn.text() === 'F') {
-                curBtn.text(" ");
-
-            } else {
-
-                curBtn.text("F");
-
-                curBtn.click((e) => {
-                    e.preventDefault();
-                    return false;
-                });
-            }
-        }
-
-        return false;
-
+<script type="text/javascript">
+    function LeftClick(cell) {
+        cell.IsVisited = true;
+        Response.Redirect("~/GameDisplay.cshtml");
     }
-
-    function tileClick(row, col) {
-
-        var curBtn = $('#' + row + "\\," + col);
-
-        // stops user from clicking revealed tile
-        if (curBtn.text() === '\xa0') {
-            var _href = curBtn.attr('href');
-            var _secRemovedHref = _href.substr(0, _href.length - 1);
-            curBtn.attr("href", _secRemovedHref + sec);
-
-        } else {
-            // disables clicking
-            return false;
+    function RightClick(cell) {
+        if (!cell.IsVisited) {
+            cell.Flagged = true;
         }
-
+        Response.Redirect("~/GameDisplay.cshtml");
+        
     }
-
+    
 </script>
 <div>
     <ul>

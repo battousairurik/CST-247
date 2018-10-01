@@ -14,26 +14,19 @@ namespace RegistrationAndLogin.Controllers
         {
             return View();
         }
-
-        public ActionResult DifficultySelection()
-        {
-
-            return View();
-        }
-
-        public GameBoard GameBoard;
         
-        public ActionResult GameDisplay(Difficulty difficulty)
+        public static GameBoard GameBoard = new GameBoard(10);
+        GameBoardController gBController = new GameBoardController(GameBoard);
+
+        public ActionResult GameDisplay()
         {
-            InitializeGameBoard(difficulty.GameDifficulty);
             
+
             return View(GameBoard);
         }
 
-        private void InitializeGameBoard(int difficulty)
-        {
-            GameBoard = new GameBoard(difficulty * 10);
-            GameBoardController gBController = new GameBoardController(GameBoard);
-        }
+        
+
+
     }
 }
