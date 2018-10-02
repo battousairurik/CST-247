@@ -32,8 +32,8 @@
                     <input type="button"
                            runat="server"
                            value="@Value"
-                           OnClientClick="LeftClick(@Cell);"
-                           oncontextmenu="RightClick(@Cell);"
+                           OnClientClick="return false"
+                           oncontextmenu="return false"
                            width="25"
                            height="25" />
 
@@ -46,6 +46,13 @@
 
 </div>
 
+<div>
+    <ul>
+        <li>@Html.ActionLink("Save Game State", "SaveGameState","Game")</li>
+        <li>@Html.ActionLink("Take Turn", "CellSelection", @Model)</li>
+    </ul>
+</div>
+
 <script type="text/javascript">
     function LeftClick(cell) {
         cell.IsVisited = true;
@@ -56,12 +63,7 @@
             cell.Flagged = true;
         }
         Response.Redirect("~/GameDisplay.cshtml");
-        
+
     }
-    
+
 </script>
-<div>
-    <ul>
-        <li>@Html.ActionLink("Save Game State", "SaveGameState","Game")</li>
-    </ul>
-</div>

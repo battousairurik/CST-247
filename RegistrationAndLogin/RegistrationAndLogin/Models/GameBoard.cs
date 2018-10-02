@@ -9,7 +9,8 @@ namespace RegistrationAndLogin.Models
     {
         public GameCell[,] GameCells { get; set; }
         public int BoardSize { get; set; }
-
+        public CellSelectionModel CellSelection { get; set; }
+        
         public GameBoard(int boardsize)
         {
             BoardSize = boardsize;
