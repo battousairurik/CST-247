@@ -18,24 +18,12 @@ namespace RegistrationAndLogin.Controllers
         public static GameBoard GameBoard = new GameBoard(10);
         GameBoardController gBController = new GameBoardController(GameBoard);
 
-        public ActionResult GameDisplay(GameBoard gameBoard)
-        {
-            GameBoard = gameBoard;
-            GameBoard.GameCells[gameBoard.CellSelection.Column - 1, gameBoard.CellSelection.Row - 1].IsVisited = true;
-
-            return View(GameBoard);
-        }
-
-        public ActionResult CellSelection(GameBoard gameBoard)
-        {
-            GameBoard = gameBoard;
-            return View(GameBoard);
-        }
-
-        public ActionResult InitialCellSelection()
+        public ActionResult GameDisplay()
         {
             
             return View(GameBoard);
         }
+
+        
     }
 }

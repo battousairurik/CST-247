@@ -49,21 +49,32 @@
 <div>
     <ul>
         <li>@Html.ActionLink("Save Game State", "SaveGameState","Game")</li>
-        <li>@Html.ActionLink("Take Turn", "CellSelection", @Model)</li>
+        
     </ul>
 </div>
 
 <script type="text/javascript">
-    function LeftClick(cell) {
+    function LeftClick(cell, button) {
         cell.IsVisited = true;
-        Response.Redirect("~/GameDisplay.cshtml");
-    }
-    function RightClick(cell) {
-        if (!cell.IsVisited) {
-            cell.Flagged = true;
+        if (cell.IsLive) {
+            button.text = "*";
         }
-        Response.Redirect("~/GameDisplay.cshtml");
-
+        else {
+            button.text = cell.Neighbors;
+        }
+        
+    }
+    function RightClick(cell, button) {
+        if (!cell.IsVisited) {
+            if (!cell.Flagged) {
+                cell.Flagged = true;
+                button.text = "F";
+            }
+            else {
+                cell.Flagged = false;
+                button.text = "";
+            }
+        }
     }
 
 </script>

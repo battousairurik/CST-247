@@ -147,7 +147,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CellSelectionModel.cs" />
     <Compile Include="Models\Difficulty.cs" />
     <Compile Include="Models\Extended\User.cs" />
     <Compile Include="Models\GameBoard.cs" />
@@ -189,8 +188,6 @@
     <Content Include="Views\Game\GameDisplay.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Game\CellSelection.cshtml" />
-    <Content Include="Views\Game\InitialCellSelection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
