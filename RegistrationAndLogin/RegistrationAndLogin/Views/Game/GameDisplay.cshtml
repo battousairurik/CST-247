@@ -1,56 +1,74 @@
 ﻿@model RegistrationAndLogin.Models.GameBoard
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js" ></script>
 
 <h2>Game Board Display</h2>
 
-<div class="container" style="margin-top: 2%;">
-
-    @for (var Row = 0; Row < Model.BoardSize; Row++)
-    {
-        <div class="hidden-xs col-lg-3"></div>
-        <div class="row">
-            <div class="col-xs-12">
-                @for (var Col = 0; Col < Model.BoardSize; Col++)
-                {
-                    var Cell = Model.GameCells[Row, Col];
-                    var Value = " ";
-
-                    if (Cell.Flagged && !Cell.IsVisited)
-                    {
-                        Value = "F";
-                    }
-                    else if (Cell.IsLive && Cell.IsVisited)
-                    {
-                        Value = "*";
-                    }
-                    else if (Cell.IsVisited)
-                    {
-                        Value = Cell.Neighbors.ToString();
-                    }
-
-                    <input type="button"
-                           runat="server"
-                           value="@Value"
-                           OnClientClick="return false"
-                           oncontextmenu="return false"
-                           width="25"
-                           height="25" />
-
-
-                }
-
-            </div>
-        </div>
-    }
-
+<div id="menuButtons">
+    <form>
+        <input type="button"
+               onclick=""
+               value="Create New Game"
+               id="newGameButton" />
+        <br />
+        <input
+               type="button"
+               onclick="SaveGameBoard(@Model)"
+               value="Save Game"
+               id="saveGameButton"
+               />
+        <br />
+        <input
+               type="button"
+               onclick=""
+               value="Load Saved Game"
+               id="loadGameButton"
+               />
+    </form>
 </div>
 
-<div>
-    <ul>
-        <li>@Html.ActionLink("Save Game State", "SaveGameState","Game")</li>
-        
-    </ul>
+<div class="container" style="margin-top: 2%;">
+    <form id="gameBoard">
+        @for (var Row = 0; Row < Model.BoardSize; Row++)
+        {
+            <div class="hidden-xs col-lg-3"></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    @for (var Col = 0; Col < Model.BoardSize; Col++)
+                    {
+                        var Cell = Model.GameCells[Row, Col];
+                        var Value = " ";
+
+                        if (Cell.Flagged && !Cell.IsVisited)
+                        {
+                            Value = "F";
+                        }
+                        else if (Cell.IsLive && Cell.IsVisited)
+                        {
+                            Value = "*";
+                        }
+                        else if (Cell.IsVisited)
+                        {
+                            Value = Cell.Neighbors.ToString();
+                        }
+
+                        <input type="button"
+                               runat="server"
+                               value="@Value"
+                               OnClientClick="return false"
+                               oncontextmenu="return false"
+                               width="25"
+                               height="25" />
+                        
+                        
+                    }
+
+                </div>
+            </div>
+        }
+    </form>
+
 </div>
 
 <script type="text/javascript">
@@ -62,7 +80,6 @@
         else {
             button.text = cell.Neighbors;
         }
-        
     }
     function RightClick(cell, button) {
         if (!cell.IsVisited) {
@@ -76,5 +93,29 @@
             }
         }
     }
+    function CreateNewGame() {
 
+    }
+    function SaveGameBoard(gameBoard) {
+
+    }
+    function LoadSavedGame() {
+
+
+    }
+    function ajaxCall() {
+        //var data = $("#menuButtons").serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "/GameController/GameDisplay",
+            data: "",
+            success: function () {
+
+            }
+            
+
+        });
+
+    }
 </script>
