@@ -1,0 +1,56 @@
+﻿@using RegistrationAndLogin.Models
+@model RegistrationAndLogin.Models.GameBoard
+
+<div class="container" style="margin-top: 2%;">
+
+    @for (var Row = 0; Row < Model.BoardSize; Row++)
+    {
+        <div class="hidden-xs col-lg-3"></div>
+        /**/
+
+        <div class="row">
+            <div class="col-xs-12">
+                @for (var Col = 0; Col < Model.BoardSize; Col++)
+                {
+                    var Cell = Model.GameCells[Row, Col];
+                    var Value = " ";
+
+                    if (Cell.Flagged && !Cell.IsVisited)
+                    {
+                        Value = "F";
+                    }
+                    else if (Cell.IsLive && Cell.IsVisited)
+                    {
+                        Value = "*";
+                    }
+                    else if (Cell.IsVisited)
+                    {
+                        Value = Cell.Neighbors.ToString();
+                    }
+
+                    @Ajax.ActionLink(@Value,
+                                  "Index",
+                                  "Game",
+                                  new { Row = Cell.Row, Col = Cell.Column, Secs = 0 },
+                                  new AjaxOptions
+                                  {
+                                      UpdateTargetId = "GameBoard",
+                                      InsertionMode = InsertionMode.Replace,
+                                      HttpMethod = "GET"
+                                  },
+                                  new
+                                  {
+                                      id = $"{Cell.Row},{Cell.Column}",
+                                      oncontextmenu = $"rightClick({Cell.Row},{Cell.Column},'{Cell.IsVisited}');",
+                                      onclick = $"leftClick({Cell.Row},{Cell.Column});",
+                                      style = "width: 25px; height: 25px; float: left;",
+                                      @class = "btn btn-default"
+                                  })
+                }
+
+            </div>
+        </div>
+
+    }
+
+</div>

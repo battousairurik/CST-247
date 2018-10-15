@@ -1,0 +1,127 @@
+﻿@* ctrl + K + D to format entire document *@
+
+@model RegistrationAndLogin.Models.GameBoard
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<h2>Game Board Display</h2>
+
+<head>
+    <div id="menuButtons">
+        <form>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit"
+                           onclick="SaveGameBoard(@Model)"
+                           value="Save Game"
+                           id="saveGameButton"
+                           style="width: 200px; height: 50px; "
+                           class="btn btn-default" />
+
+                    <input type="submit"
+                           onclick=""
+                           value="Load Saved Game"
+                           id="loadGameButton"
+                           style="width: 200px; height: 50px; "
+                           class="btn btn-default" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+
+        function SaveGameBoard(gameBoard) {
+            var data = $(gameBoard).serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "/GameController/GameDisplay",
+                datatype: "",
+                data: "",
+                success: function (data) {
+                    $("#gameBoard").html(data);
+                }
+                error: function (data) {
+                    alert("Call was unsucessful " + data)
+                }
+
+            });
+        }
+        function LoadSavedGame() {
+
+            //Save Select
+
+            $.ajax({
+                type: "GET",
+                url: "/GameController/GameDisplay",
+                datatype: "text",
+                data: { id: value },
+                success: function (data) {
+                    $("#gameBoard").html(data);
+                }
+                error: function (data) {
+                    alert("Call was unsucessful " + data)
+                }
+
+            });
+        }
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="GameBoard">
+        @{
+            Html.RenderPartial("GameBoardView", Model);
+        }
+    </div>
+
+    <script type="text/javascript">
+        function rightClick(row, col, beenVisited) {
+
+            var curBtn = $('#' + row.toString() + "\\," + col.toString());
+
+            // will toggle flag if tile hasnt been visited
+            if (curBtn.text() === '\xa0' || curBtn.text() === "F") {
+                $.post("/Game/Row/Col", { Row: row, Col: col });
+
+                if (curBtn.text() === 'F') {
+                    curBtn.text(" ");
+
+                } else {
+
+                    curBtn.text("F");
+
+                    curBtn.click((e) => {
+                        e.preventDefault();
+                        return false;
+                    });
+                }
+            }
+
+            return false;
+
+        }
+
+        function leftClick(row, col) {
+
+            var curBtn = $('#' + row + "\\," + col);
+
+            // stops user from clicking revealed tile
+            if (curBtn.text() === '\xa0') {
+                var _href = curBtn.attr('href');
+                var _secRemovedHref = _href.substr(0, _href.length - 1);
+                curBtn.attr("href", _secRemovedHref + sec);
+                console.log(sec);
+            } else {
+                // disables clicking
+                return false;
+            }
+
+        }
+    </script>
+</body>
+
